@@ -52,6 +52,7 @@ The information about the names of all the columns of the dataset
 
 ```{r}
  install.packages("ggplot2", repos = "http://cran.us.r-project.org")
+ #install.packages('tidyverse', repos = "http://cran.us.r-project.org")
  library(ggplot2)
 ```
 
@@ -159,7 +160,6 @@ ggplot(data = hotel_bookings) +
 #### Filtering
 
 ```{r}
-#  install.packages('tidyverse')
   library(tidyverse)
 ```
 
@@ -188,7 +188,7 @@ onlineta_city_hotels_v2 <- hotel_bookings %>%
 Notice how in the code chunk above, the %>% symbol is used to note the logical steps of this code. First, it starts with the name of the data frame, `onlineta_city_hotels_v2`, AND THEN it tells `R` to start with the original data frame `hotel_bookings`. Then it tells it to filter on the 'hotel' column; finally, it tells it to filter on the 'market_segment' column.
 
 ```{r}
-ggplot(data = onlineta_city_hotels) +
+ggplot(data = onlineta_city_hotels_v2) +
   geom_point(mapping = aes(x = lead_time, y = children))
 ```
 

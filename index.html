@@ -237,11 +237,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output cell-output-stdout">
 <pre><code>
 The downloaded binary packages are in
-    /var/folders/7r/p233l0lj5bv7s00gg1dtnqn40000gn/T//Rtmpr4G8Ol/downloaded_packages</code></pre>
+    /var/folders/7r/p233l0lj5bv7s00gg1dtnqn40000gn/T//RtmptKx6RY/downloaded_packages</code></pre>
 </div>
 <details open="" class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a> <span class="fu">library</span>(ggplot2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a> <span class="co">#install.packages('tidyverse', repos = "http://cran.us.r-project.org")</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">library</span>(ggplot2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -416,12 +417,10 @@ The downloaded binary packages are in
 </div>
 </div>
 </div>
+<p>The stakeholder wants to run a family-friendly promotion targeting key market segments. She wants to know which market segments generate the largest number of bookings, and where these bookings are made (city hotels or resort hotels).</p>
 </section>
-</section>
-<section id="filters" class="level4">
-<h4 class="anchored" data-anchor-id="filters">Filters</h4>
-<section id="section" class="level5">
-<h5 class="anchored" data-anchor-id="section"></h5>
+<section id="this-graphic-create-a-bar-chart-showing-each-hotel-type-and-market-segment" class="level5">
+<h5 class="anchored" data-anchor-id="this-graphic-create-a-bar-chart-showing-each-hotel-type-and-market-segment">This graphic create a bar chart showing each hotel type and market segment</h5>
 <div class="cell">
 <details open="" class="code-fold">
 <summary>Code</summary>
@@ -436,6 +435,73 @@ The downloaded binary packages are in
 </div>
 </div>
 </div>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> hotel_bookings) <span class="sc">+</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> hotel, <span class="at">fill=</span>hotel)) <span class="sc">+</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>market_segment)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="filtering" class="level4">
+<h4 class="anchored" data-anchor-id="filtering">Filtering</h4>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<section id="hypothesis-about-a-promotion-to-families-that-make-online-bookings-for-city-hotels" class="level5">
+<h5 class="anchored" data-anchor-id="hypothesis-about-a-promotion-to-families-that-make-online-bookings-for-city-hotels">Hypothesis about a promotion to families that make online bookings for city hotels</h5>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>onlineta_city_hotels <span class="ot">&lt;-</span> <span class="fu">filter</span>(hotel_bookings, </span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>                           (hotel<span class="sc">==</span><span class="st">"City Hotel"</span> <span class="sc">&amp;</span> </span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>                             hotel_bookings<span class="sc">$</span>market_segment<span class="sc">==</span><span class="st">"Online TA"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>The <code>filter()</code> function to create a data set that only includes the data you want. You can use the ‘&amp;’ character to demonstrate that you want two different conditions to be true. Also, you can use the ‘$’ character to specify which column in the data frame ‘hotel_bookings’ you are referencing (for example, ‘market_segment’).</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(onlineta_city_hotels)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Another way to do this, is using the pipe operator</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>onlineta_city_hotels_v2 <span class="ot">&lt;-</span> hotel_bookings <span class="sc">%&gt;%</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(hotel<span class="sc">==</span><span class="st">"City Hotel"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(market_segment<span class="sc">==</span><span class="st">"Online TA"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Notice how in the code chunk above, the %&gt;% symbol is used to note the logical steps of this code. First, it starts with the name of the data frame, <code>onlineta_city_hotels_v2</code>, AND THEN it tells <code>R</code> to start with the original data frame <code>hotel_bookings</code>. Then it tells it to filter on the ‘hotel’ column; finally, it tells it to filter on the ‘market_segment’ column.</p>
+<div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> onlineta_city_hotels_v2) <span class="sc">+</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> lead_time, <span class="at">y =</span> children))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This scatterplot shows data for online bookings for city hotels. The plot reveals that bookings with children tend to have a shorter lead time, and bookings with 3 children have a significantly shorter lead time (&lt;200 days). So, promotions targeting families can be made closer to the valid booking dates.</p>
 </section>
 </section>
 </section>
